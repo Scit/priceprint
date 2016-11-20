@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../assets/styles.css'
+import '../assets/split-styles.css'
 
 import React from 'react'
 import { render } from 'react-dom'

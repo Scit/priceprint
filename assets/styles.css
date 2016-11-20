@@ -8,5 +8,10 @@ body {
 }
 
 .SplitPane {
-  padding-bottom: -50px;
+  margin-bottom: -130px;
+}
+
+.action-panel {
+  padding-top: 10px;
+  height: 60px;
 }
