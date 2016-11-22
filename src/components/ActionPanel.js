@@ -1,16 +1,19 @@
 import React from 'react'
+import keymirror from 'keymirror'
 
-export default function(props) {
+export const ACTIONS = keymirror({ADD: null, EDIT: null, DELETE: null})
+
+export default function({onAction}) {
   return (
     <div className="btn-toolbar action-panel">
       <div className="btn-group">
-        <button className="btn btn-lg btn-default">Add</button>
+        <button className="btn btn-lg btn-default" onClick={() => onAction(ACTIONS.ADD)}>Add</button>
       </div>
       <div className="btn-group">
-        <button className="btn btn-lg btn-default">Seach</button>
+        <button className="btn btn-lg btn-default" onClick={() => onAction(ACTIONS.EDIT)}>Edit</button>
       </div>
       <div className="btn-group">
-        <button className="btn btn-lg btn-default">Print</button>
+        <button className="btn btn-lg btn-default" onClick={() => onAction(ACTIONS.DELETE)}>Delete</button>
       </div>
     </div>
   )
