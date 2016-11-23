@@ -32,12 +32,22 @@ export default class App extends React.Component {
 
     switch (this.getAppState()) {
       case PANEL_ACTIONS.ADD:
-        return (<ProductForm product={products.find(product => product.pk === selectedProduct)} onClose={() => this.setAppState()} />)
+        return (<ProductForm
+                  product={products.find(product => product.pk === selectedProduct)}
+                  onClose={() => this.setAppState()}
+                  headerTitle="Add product"
+                  onSubmit={::this.onProductSubmit}
+                />)
       case PANEL_ACTIONS.EDIT:
         if (!selectedProduct) {
           setTimeout(() => this.setAppState())
         }
-        return (selectedProduct && <ProductForm product={products.find(product => product.pk === selectedProduct)} onClose={() => this.setAppState()} />)
+        return (selectedProduct && <ProductForm
+                                    product={products.find(product => product.pk === selectedProduct)}
+                                    onClose={() => this.setAppState()}
+                                    headerTitle="Edit product"
+                                    onSubmit={::this.onProductSubmit}
+                                   />)
       case PANEL_ACTIONS.DELETE:
         break;
       default:
@@ -77,5 +87,9 @@ export default class App extends React.Component {
 
   onSelectProduct(pk) {
     this.setState({selectedProduct: pk})
+  }
+
+  onProductSubmit(product) {
+    console.log(product)
   }
 }
