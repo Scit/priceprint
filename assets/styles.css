@@ -42,3 +42,24 @@ body {
   filter: alpha(opacity=40);
   cursor: pointer;
 }
+
+.price-page {
+  margin-top: 30px;
+  border: solid #a0a0a0 1px;
+}
+
+.price-item {
+  text-align: center;
+  border: #a0a0a0 solid 1px;
+  cursor: pointer;
+  height: 60px;
+  font-size: 10px;
+}
+
+.price-item:hover {
+  background-color: azure;
+}
+
+.price-item.active {
+  border-color: #a0a0f0;
+}

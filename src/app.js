@@ -7,6 +7,7 @@ import Panel from './components/Panel'
 import Container from './components/Container'
 import PriceList from './main/PriceList'
 import ProductForm from './main/ProductForm'
+import PrintPanel from './main/PrintPanel'
 
 
 export default class App extends React.Component {
@@ -32,22 +33,29 @@ export default class App extends React.Component {
 
     switch (this.getAppState()) {
       case PANEL_ACTIONS.ADD:
-        return (<ProductForm
-                  product={products.find(product => product.pk === selectedProduct)}
-                  onClose={() => this.setAppState()}
-                  headerTitle="Add product"
-                  onSubmit={::this.onProductSubmit}
-                />)
+        return (
+          <ProductForm
+            product={{}}
+            onClose={() => this.setAppState()}
+            headerTitle="Add product"
+            onSubmit={::this.onProductSubmit}
+          />)
+
       case PANEL_ACTIONS.EDIT:
         if (!selectedProduct) {
           setTimeout(() => this.setAppState())
         }
-        return (selectedProduct && <ProductForm
-                                    product={products.find(product => product.pk === selectedProduct)}
-                                    onClose={() => this.setAppState()}
-                                    headerTitle="Edit product"
-                                    onSubmit={::this.onProductSubmit}
-                                   />)
+        return (selectedProduct &&
+          <ProductForm
+            product={products.find(product => product.pk === selectedProduct)}
+            onClose={() => this.setAppState()}
+            headerTitle="Edit product"
+            onSubmit={::this.onProductSubmit}
+          />)
+      case PANEL_ACTIONS.PRINT:
+        return (
+          <PrintPanel items={products} />
+        )
       case PANEL_ACTIONS.DELETE:
         break;
       default:
@@ -63,7 +71,7 @@ export default class App extends React.Component {
         <ActionPanel onAction={::this.onPanelAction} />
         <Container>
           <Panel>
-            <PriceList data={products} selectedProduct={selectedProduct} onSelectProduct={::this.onSelectProduct} />
+            <PrintPanel items={products} selectedProduct={selectedProduct} onSelectProduct={::this.onSelectProduct} />
           </Panel>
           <Panel>
             { this.renderSideForm() }
